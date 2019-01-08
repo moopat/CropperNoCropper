@@ -5,12 +5,9 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
@@ -27,7 +24,10 @@ import com.fenchtose.nocropper.ScaledCropper;
 import java.io.File;
 import java.io.IOException;
 
-import butterknife.Bind;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_GALLERY = 21;
     private static final String TAG = "MainActivity";
 
-    @Bind(R.id.imageview)
+    @BindView(R.id.imageview)
     CropperView mImageView;
 
-    @Bind(R.id.original_checkbox)
+    @BindView(R.id.original_checkbox)
     CheckBox originalImageCheckbox;
 
-    @Bind(R.id.crop_checkbox)
+    @BindView(R.id.crop_checkbox)
     CheckBox cropAsyncCheckbox;
 
     private Bitmap originalBitmap;
@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "bitmap: " + mBitmap.getWidth() + " " + mBitmap.getHeight());
 
         int maxP = Math.max(mBitmap.getWidth(), mBitmap.getHeight());
-        float scale1280 = (float)maxP / 1280;
-        Log.i(TAG, "scaled: " + scale1280 + " - " + (1/scale1280));
+        float scale1280 = (float) maxP / 1280;
+        Log.i(TAG, "scaled: " + scale1280 + " - " + (1 / scale1280));
 
         if (mImageView.getWidth() != 0) {
             mImageView.setMaxZoom(mImageView.getWidth() * 2 / 1280f);
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, (int)(mBitmap.getWidth()/scale1280),
-                (int)(mBitmap.getHeight()/scale1280), true);
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, (int) (mBitmap.getWidth() / scale1280),
+                (int) (mBitmap.getHeight() / scale1280), true);
 
         mImageView.setImageBitmap(mBitmap);
     }
@@ -253,10 +253,10 @@ public class MainActivity extends AppCompatActivity {
         float scale;
         if (rotationCount % 2 == 0) {
             // same width and height
-            scale = (float) originalBitmap.getWidth()/mBitmap.getWidth();
+            scale = (float) originalBitmap.getWidth() / mBitmap.getWidth();
         } else {
             // width and height are interchanged
-            scale = (float) originalBitmap.getWidth()/mBitmap.getHeight();
+            scale = (float) originalBitmap.getWidth() / mBitmap.getHeight();
         }
 
         CropInfo cropInfo = result.getCropInfo().rotate90XTimes(mBitmap.getWidth(), mBitmap.getHeight(), rotationCount);

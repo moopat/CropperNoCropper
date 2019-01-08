@@ -13,12 +13,13 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by Administrator on 11/2/2015.
