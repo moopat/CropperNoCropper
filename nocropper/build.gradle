@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "0.3.0"
-group = "com.fenchtose.nocropper"
+version = "0.4.0"
+group = "at.moop"
 
-def siteUrl = "https://github.com/jayrambhia/CropperNoCropper"
-def gitUrl = "https://github.com/jayrambhia/CropperNoCropper.git"
+def siteUrl = "https://github.com/moopat/CropperNoCropper"
+def gitUrl = "https://github.com/moopat/CropperNoCropper.git"
 
 android {
     compileSdkVersion 28
@@ -32,8 +32,8 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = "maven"
-        name = "NoCropper"
+        repo = "moopat"
+        name = "cropper-no-cropper"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
@@ -56,11 +56,15 @@ install {
                 }
 
                 developers {
-                    developer {
+                    [developer {
                         id 'jayarambhia'
                         name ' Jay Rambhia'
                         email ' jayrambhia777@gmail.com'
-                    }
+                    },
+                    developer {
+                        id 'moopat'
+                        name 'Markus Deutsch'
+                    }]
                 }
 
                 scm {
