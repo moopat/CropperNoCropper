@@ -100,6 +100,7 @@ public class CropperView extends FrameLayout {
 
     /**
      * Crop bitmap in sync
+     *
      * @return {@link BitmapResult} may contain null bitmap if it's not a success. If this method is called when
      * user is still using the gesture (scrolling, panning, etc), it would return result with state FAILURE_GESTURE_IN_PROCESS
      * @throws OutOfMemoryError
@@ -131,6 +132,7 @@ public class CropperView extends FrameLayout {
 
     /**
      * Crop bitmap async
+     *
      * @param callback {@link CropperCallback}
      * @return State STARTED if cropping will start else FAILURE_GESTURE_IN_PROCESS
      * if cropping can not be started because the user is in the middle of a gesture.
@@ -212,7 +214,7 @@ public class CropperView extends FrameLayout {
         @Override
         public void onGestureStarted() {
             isGestureInProgess = true;
-            mGridView.setShowGrid(gridCallback == null || gridCallback.onGestureStarted());
+            mGridView.setShowGrid((gridCallback == null || gridCallback.onGestureStarted()) && isGestureEnabled());
         }
 
         @Override
@@ -229,12 +231,14 @@ public class CropperView extends FrameLayout {
     public interface GridCallback {
         /**
          * Invoked when user user touches the grid
+         *
          * @return true if you want to show grid, else false
          */
         boolean onGestureStarted();
 
         /**
          * Invoked when user completes the gesture
+         *
          * @return true if you want to show grid, else false
          */
         boolean onGestureCompleted();
