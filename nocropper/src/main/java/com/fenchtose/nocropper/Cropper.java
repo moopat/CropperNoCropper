@@ -22,7 +22,7 @@ public class Cropper {
     }
 
     public Bitmap cropBitmap() throws IllegalArgumentException {
-        Log.i(TAG, "cropinfo: " + cropInfo + ", bitmap: " + originalBitmap.getWidth() + ", " + originalBitmap.getHeight());
-        return BitmapUtils.getCroppedBitmap(originalBitmap, cropInfo);
+        Log.i(TAG, "cropinfo: " + cropInfo + ", bitmap: " + ((originalBitmap == null) ? "null" : originalBitmap.getWidth() + ", " + originalBitmap.getHeight()));
+        return originalBitmap != null ? BitmapUtils.getCroppedBitmap(originalBitmap, cropInfo) : null;
     }
 }

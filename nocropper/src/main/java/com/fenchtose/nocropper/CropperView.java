@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
@@ -128,6 +129,14 @@ public class CropperView extends FrameLayout {
         }
 
         return CropResult.error();
+    }
+
+    public Matrix getImageMatrix() {
+        return mImageView.getImageMatrix();
+    }
+
+    public void setImageMatrix(Matrix matrix) {
+        mImageView.setImageMatrix(matrix);
     }
 
     /**
